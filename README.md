@@ -1,8 +1,13 @@
 # babel-plugin-looptar
 
-Breaks infinite loops in ui therads in dev environment, this is really helpful
-if you are building user interfaces, will save you from crashing tabs when handling
-lots of fors and just making stupid mistakes.
+In the UI thread if you are spending more than a few 100ms you are killing the
+user experience. And no matter how much you think you can estimate time, you can't
+This tool throws errors if the loop is too long. It defaults to 1000ms at the 
+point where user has already lost interest in your website but you can reduce it
+to several milliseconds.
+
+Basically this can be injected to find long running loops and break them like
+stackoverflows.
 
 For issues and features about looptar the library itself please make an issue
 at https://github.com/darkyen/looptar/ the issue tracker here is for issues
