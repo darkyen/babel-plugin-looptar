@@ -1,7 +1,13 @@
 # babel-plugin-looptar
 
 Breaks infinite loops in ui therads in dev environment, this is really helpful
-if you are building user interfaces, will save your butt a lot :P
+if you are building user interfaces, will save you from crashing tabs when handling
+lots of fors and just making stupid mistakes.
+
+For issues and features about looptar the library itself please make an issue
+at https://github.com/darkyen/looptar/ the issue tracker here is for issues
+with the babel plugin and not looptar itself. This allows sanity with tests
+and over all less bugs.
 
 ## Example
 This will work with ``for``, ``while``, ``do while`` loops alike.
