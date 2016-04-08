@@ -7,7 +7,7 @@ point where user has already lost interest in your website but you can reduce it
 to several milliseconds.
 
 Basically this can be injected to find long running loops and break them like
-stackoverflows.
+stackoverflows via injecting looptar through babel.
 
 For issues and features about looptar the library itself please make an issue
 at https://github.com/darkyen/looptar/ the issue tracker here is for issues
