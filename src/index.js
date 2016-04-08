@@ -2,7 +2,7 @@
 function injectLoopWatcher(t, path, state) {
 
   let {node, scope} = path;
-  const ident = scope.generateUidIdentifier().name;
+  const ident = state.get("iden").next();
 
   if( scope.hasBinding("_looptar") === false ){
     path.hub.file.addImport("looptar", "default", "_looptar");
@@ -15,7 +15,7 @@ function injectLoopWatcher(t, path, state) {
         t.identifier("_looptar"),
         t.identifier("iterates")
       ),
-      [t.stringLiteral(ident)]
+      [t.numericLiteral(ident)]
     )
   ));
 
@@ -26,7 +26,7 @@ function injectLoopWatcher(t, path, state) {
           t.identifier("_looptar"),
           t.identifier("exits")
         ),
-        [t.stringLiteral(ident)]
+        [t.numericLiteral(ident)]
       )
     )
   );
@@ -37,6 +37,17 @@ export default function({ types: t }) {
   const typedInjector = (path, state) => injectLoopWatcher(t, path, state);
 
   return {
+    pre(file){
+      let iden = 0;
+      // return a dynamic iterator everytime.
+      this.setDynamic("iden", function(){
+        return {
+          next(){
+            return iden++;
+          }
+        }
+      });
+    },
     visitor: {
       DoWhileStatement: typedInjector,
       ForInStatement: typedInjector,
